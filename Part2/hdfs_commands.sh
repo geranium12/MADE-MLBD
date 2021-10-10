@@ -49,8 +49,7 @@ hdfs dfs -cp /user/geranium/myrobot.xacro /user
 hdfs dfs -setrep -w 2 /user/myrobot.xacro
 
 # Найти информацию по файлу, блокам и их расположениям с помощью hdfs fsck
-hdfs fsck /user/myrobot.xacro
-hdfs fsck /user/myrobot.xacro -files -blocks
+hdfs fsck /user/myrobot.xacro -files -blocks -locations
 
 # Получить информацию по любому блоку из п.2 с помощью "hdfs fsck -blockId”. Обратить внимание на Generation Stamp (GS number).
 hdfs fsck -blockId blk_1073741847
