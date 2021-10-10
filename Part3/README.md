@@ -15,12 +15,28 @@ https://www.kaggle.com/dgomonov/new-york-city-airbnb-open-data
 который необходимо разместить в репозитории.
 
 ### Результаты
-#### numpy
-mean: 152.7110154519201
+Из исходного файла была оставлена одна колонка price для упрощения чтения файла.
 
-variance: 57672.25478303717
+#### Копирование файлов в Docker и HDFS:
+```
+docker cp ~/Documents/MADE-MLBD/Part3/mapper.py namenode:/
+docker cp ~/Documents/MADE-MLBD/Part3/reducer.py namenode:/
+docker cp ~/Documents/MADE-MLBD/Part3/data.csv namenode:/
+hdfs dfs -put -f /mapper.py /user/root/mapper.py
+hdfs dfs -put -f /reducer.py /user/root/reducer.py
+hdfs dfs -put -f /data.csv /user/root/data.csv
+```
 
-#### hadoop
-mean: 152.7110154519201	
+#### Запуск MapReduce:
+```
+mapred streaming -files mapper.py,reducer.py,data.csv -mapper "python3 mapper.py" -reducer "python3 reducer.py" -input data.csv -output output 
+```
 
-variance: 57672.254783036784
+#### Просмотр результатов:
+```
+hdfs dfs -cat /user/root/output/part-00000
+```
+|               | mean                | variance           |
+| ------------- |:-------------------:| :-----------------:|
+| numpy         | 152.7110154519201   | 57672.254783037170  |
+| hadoop        | 152.7110154519201	  | 57672.254783036784 |
