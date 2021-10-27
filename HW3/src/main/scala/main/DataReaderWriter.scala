@@ -14,7 +14,7 @@ class DataReaderWriter {
   }
 
   def writeData(fileName: String, data: DenseMatrix[Double]): Unit = {
-    csvwrite(file = new File("log/" + fileName), mat = data, separator = ',')
+    csvwrite(file = new File("results/" + fileName), mat = data, separator = ',')
   }
 
 }

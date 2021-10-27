@@ -37,7 +37,7 @@ object Main {
       case _: NumberFormatException =>
         logger.error("NumberFormatException: the input data has non-numerical columns!")
       case _: ArrayIndexOutOfBoundsException =>
-        logger.error("ArrayIndexOutOfBoundsException: you did not specify either input train data or input test data!")
+        logger.error("ArrayIndexOutOfBoundsException: you did not specify either correct input train data or correct input test data!")
     }
   }
 }
